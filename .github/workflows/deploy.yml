@@ -10,31 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Клонируем репозиторий
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Устанавливаем Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # 3. Устанавливаем зависимости
       - name: Install dependencies
         run: npm install
 
-      # 4. Собираем проект
-      - name: Build
+      - name: Build project
         run: npm run build
 
-      # 5. Деплой на GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          # Включаем автоматическое создание ветки gh-pages, если её нет
           publish_branch: gh-pages
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
