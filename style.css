@@ -1,0 +1,47 @@
+/* ==== Общий стиль страницы ==== */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f8;
+    padding: 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* ==== Заголовок и футер ==== */
+.page-header h1 {
+    margin-bottom: 10px;
+}
+
+.page-footer {
+    margin-top: 40px;
+    font-size: 14px;
+    color: #777;
+}
+
+/* ==== Ссылки главной страницы ==== */
+.index-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.page-link {
+    display: inline-block;
+    padding: 12px 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    text-decoration: none;
+    color: #333;
+    width: 220px;
+    transition: all 0.25s ease;
+}
+
+.page-link:hover {
+    background: #0077ff;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
