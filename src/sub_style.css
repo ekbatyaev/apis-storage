@@ -55,18 +55,6 @@ body::before {
     position: relative;
 }
 
-.page-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--primary-color), var(--accent-color), transparent);
-    border-radius: 3px;
-}
-
 .page-header h1 {
     font-size: 2.8rem;
     margin-bottom: 1rem;
@@ -164,9 +152,11 @@ button:active {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1.5rem;
-    padding: 1rem;
+    padding: 0;
     max-width: 1400px;
     margin: 0 auto;
+    justify-items: center;
+    margin-top: -3.5rem;
 }
 
 /* ==== Карточка аниме ==== */
@@ -179,22 +169,6 @@ button:active {
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
-}
-
-.anime-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
-
-.anime-card:hover::before {
-    transform: scaleX(1);
 }
 
 .anime-card:hover {
@@ -237,28 +211,34 @@ button:active {
     color: var(--accent-color);
 }
 
-/* ==== Контейнер цитат/изображений ==== */
+/* ==== Контейнер изображений ==== */
 #quote-container {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem;
+    max-width: 500px;
+    margin: 1rem auto;
+    padding: 1rem;
 }
 
 .quote-card {
     background: var(--card-bg);
     backdrop-filter: blur(10px);
     border-radius: var(--border-radius);
-    padding: 2rem;
+    padding: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     animation: fadeInUp 0.6s ease-out;
+    text-align: center;
+    margin-top: -3.5rem;
 }
 
 .quote-card img {
-    max-width: 100%;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
+    max-width: 90vw;
+    max-height: 70vh;
+    width: auto;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    object-fit: contain;
 }
 
 .quote-card img:hover {
@@ -346,5 +326,16 @@ button:active {
     
     .page-header h1 {
         font-size: 2.2rem;
+    }
+    .quote-card img {
+        max-width: 95vw;
+        max-height: 60vh;
+    }
+    
+    #quote-container {
+        padding: 0.5rem;
+    }
+    .quote-card {
+        padding: 1rem;
     }
 }

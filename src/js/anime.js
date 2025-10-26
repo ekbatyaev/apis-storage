@@ -13,8 +13,13 @@ let cache = {
 };
 
 function showLoading(message = 'Загрузка аниме...') {
+    container.style.display = 'flex';
+    container.style.justifyContent = 'center';
+    container.style.alignItems = 'center';
+    container.style.minHeight = '50vh';
+    container.style.width = '100%';
     container.innerHTML = `
-        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+        <div style="text-align: center;">
             <div class="spinner"></div>
             <p style="margin-top: 1rem; opacity: 0.8;">${message}</p>
         </div>
@@ -124,8 +129,23 @@ function getPlaceholderImage(title = 'Аниме') {
 }
 
 function renderAnime(list) {
+    container.style.display = 'grid';
+    container.style.justifyContent = '';
+    container.style.alignItems = '';
+    container.style.minHeight = '';
+    
     if (!list || list.length === 0) {
-        container.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">🔍 Ничего не найдено</div>';
+        container.style.display = 'flex';
+        container.style.justifyContent = 'center';
+        container.style.alignItems = 'center';
+        container.style.minHeight = '50vh';
+        container.innerHTML = `
+            <div style="text-align: center;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+                <h3 style="margin-bottom: 1rem;">Ничего не найдено</h3>
+                <p style="opacity: 0.8;">Попробуйте изменить параметры поиска</p>
+            </div>
+        `;
         return;
     }
 

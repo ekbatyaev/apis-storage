@@ -148,6 +148,14 @@ body::before {
     background: rgba(106, 90, 249, 0.15);
 }
 
+.page-link:nth-child(3):hover {
+    background: rgba(0, 100, 255, 0.3);
+    box-shadow: 
+        0 10px 35px rgba(0, 150, 255, 0.6),
+        0 0 20px rgba(0, 200, 255, 0.8),
+        0 0 0 2px rgba(0, 180, 255, 0.8);
+}
+
 .page-footer {
     margin-top: 4rem;
     padding: 2rem 1rem;
