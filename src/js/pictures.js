@@ -2,32 +2,46 @@ document.getElementById('new-quote').addEventListener('click', loadQuote);
 
 async function loadQuote() {
     const container = document.getElementById('quote-container');
-    container.innerHTML = '<p>Загрузка...</p>';
+    container.innerHTML = `
+        <div class="quote-card" style="text-align: center;">
+            <div class="spinner"></div>
+            <p>Загрузка изображения...</p>
+        </div>
+    `;
 
     try {
-        const fallbackResponse = await fetch('https://nekos.best/api/v2/neko');
-        const fallbackData = await fallbackResponse.json();
+        const response = await fetch('https://nekos.best/api/v2/neko');
+        const data = await response.json();
         
-        if (fallbackData.results && fallbackData.results[0] && fallbackData.results[0].url) {
+        if (data.results && data.results[0] && data.results[0].url) {
             container.innerHTML = `
                 <div class="quote-card">
-                    <img src="${fallbackData.results[0].url}" alt="Аниме изображение" style="max-width: 300px; border-radius: 8px;">
-                    <p>Изображение предоставлено API Nekos.best</p>
+                    <img src="${data.results[0].url}" alt="Аниме изображение" 
+                         onerror="this.style.display='none'">
+                    <div style="text-align: center; margin-top: 1rem;">
+                        <p style="color: var(--accent-color)">
+                            Источник данных: API Nekos.best
+                        </p>
+                    </div>
                 </div>
             `;
         } else {
-            throw new Error('Запасной API тоже не сработал');
+            throw new Error('Некорректный ответ от API');
         }
-    } catch (fallbackError) {
-        console.error('Ошибка запасного API:', fallbackError);
+    } catch (error) {
+        console.error('Ошибка загрузки:', error);
         container.innerHTML = `
-            <div class="quote-card">
-                <p>⚠️ Не удалось загрузить изображение</p>
-                <p>Попробуйте позже или проверьте подключение к интернету</p>
+            <div class="quote-card" style="text-align: center;">
+                <h3>Не удалось загрузить изображение</h3>
+                <p>${error.message}</p>
+                <button onclick="loadQuote()" style="margin-top: 1rem;">
+                    🔄 Попробовать снова
+                </button>
             </div>
         `;
     }
 }
 
-// Делаем функцию доступной глобально
 window.loadQuote = loadQuote;
+
+document.addEventListener('DOMContentLoaded', loadQuote);

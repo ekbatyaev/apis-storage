@@ -2,42 +2,45 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Библиотека аниме</title>
     <link rel="stylesheet" href="../sub_style.css">
 </head>
 <body>
-<header class="page-header">
-    <h1>Anime</h1>
+    <header class="page-header">
+        <h1>Библиотека аниме</h1>
+        <p>Откройте для себя лучшие аниме-сериалы и фильмы</p>
 
-    <div class="filters">
-        <input type="text" id="search" placeholder="🔍 Поиск по названию..." />
+        <div class="filters">
+            <input type="text" id="search" placeholder="Поиск по названию..." />
 
-        <select id="sort">
-            <option value="title">Сортировать по названию</option>
-            <option value="score">Сортировать по рейтингу</option>
-            <option value="year">Сортировать по году</option>
-        </select>
+            <select id="sort">
+                <option value="title">Сортировать по названию</option>
+                <option value="score">Сортировать по рейтингу</option>
+                <option value="year">Сортировать по году</option>
+            </select>
 
-        <select id="type">
-            <option value="all">Все типы</option>
-            <option value="tv">TV</option>
-            <option value="movie">Фильм</option>
-            <option value="ova">OVA</option>
-            <option value="special">Спешл</option>
-        </select>
-    </div>
-</header>
+            <select id="type">
+                <option value="all">Все типы</option>
+                <option value="tv">TV</option>
+                <option value="movie">Фильм</option>
+                <option value="ova">OVA</option>
+                <option value="special">Спешл</option>
+            </select>
+        </div>
+    </header>
 
-<main>
-    <div id="anime-list" class="anime-grid">
-        <p>Загрузка...</p>
-    </div>
-</main>
+    <main>
+        <div id="anime-list" class="anime-grid">
+            <div class="spinner"></div>
+            <p>Загрузка аниме...</p>
+        </div>
+    </main>
 
-<footer class="page-footer">
-    <p>Источник данных: <a href="https://docs.api.jikan.moe/" target="_blank">Jikan API</a></p>
-</footer>
+    <footer class="page-footer">
+        <p>© 2025. Аниме Вселенная. Все права защищены.</p>
+    </footer>
 
-<script type="module" src="../js/anime.js"></script>
+    <script type="module" src="../js/anime.js"></script>
 </body>
 </html>
