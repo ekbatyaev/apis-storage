@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Библиотека аниме</title>
+    <link rel="stylesheet" href="sub_style.css">
+</head>
+<body>
+<header class="page-header">
+    <h1>Anime</h1>
+
+    <div class="filters">
+        <input type="text" id="search" placeholder="🔍 Поиск по названию..." />
+
+        <select id="sort">
+            <option value="title">Сортировать по названию</option>
+            <option value="score">Сортировать по рейтингу</option>
+            <option value="year">Сортировать по году</option>
+        </select>
+
+        <select id="type">
+            <option value="all">Все типы</option>
+            <option value="tv">TV</option>
+            <option value="movie">Фильм</option>
+            <option value="ova">OVA</option>
+            <option value="special">Спешл</option>
+        </select>
+    </div>
+</header>
+
+<main>
+    <div id="anime-list" class="anime-grid">
+        <p>Загрузка...</p>
+    </div>
+</main>
+
+<footer class="page-footer">
+    <p>Источник данных: <a href="https://docs.api.jikan.moe/" target="_blank">Jikan API</a></p>
+</footer>
+
+<script type="module" src="anime.js"></script>
+</body>
+</html>

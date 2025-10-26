@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Цитаты из Аниме - Anime World</title>
+    <link rel="stylesheet" href="../main_style.css">
+    <link rel="stylesheet" href="./sub_style.css">
+</head>
+<body>
+    <div class="app">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <a href="../index.html" class="home-link">← 🎌</a>
+                <h1>Цитаты из Аниме</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="./anime.html" class="nav-link">📺 Аниме</a></li>
+                <li><a href="./something_1.html" class="nav-link">👥 Персонажи</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h2>💬 Цитаты из Аниме</h2>
+                <p>Получаем цитаты в реальном времени из AnimeChan API</p>
+            </div>
+
+            <div class="quotes-controls">
+                <div class="control-group">
+                    <label for="anime-select">Выберите аниме:</label>
+                    <select id="anime-select" class="filter-select">
+                        <option value="">🎲 Случайные цитаты</option>
+                        <option value="Naruto">Naruto</option>
+                        <option value="Attack on Titan">Attack on Titan</option>
+                        <option value="One Piece">One Piece</option>
+                        <option value="Death Note">Death Note</option>
+                        <option value="My Hero Academia">My Hero Academia</option>
+                        <option value="Demon Slayer">Demon Slayer</option>
+                        <option value="Dragon Ball">Dragon Ball</option>
+                        <option value="One Punch Man">One Punch Man</option>
+                        <option value="Bleach">Bleach</option>
+                        <option value="Tokyo Ghoul">Tokyo Ghoul</option>
+                    </select>
+                </div>
+                
+                <button id="new-quote-btn" class="primary-btn large">
+                    🔄 Новая цитата
+                </button>
+            </div>
+
+            <div id="quote-container" class="quote-container">
+                <div class="quote-placeholder">
+                    <p>Нажмите "Новая цитата" чтобы загрузить цитату из AnimeChan API!</p>
+                </div>
+            </div>
+
+            <div class="quotes-info">
+                <p>💡 <strong>AnimeChan API</strong> - работаем с несколькими зеркалами API для надежности</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #666;">
+                    Пробуем: animechan.xyz → animechan.io → animechan.vercel.app
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="./quotes.js"></script>
+</body>
+</html>

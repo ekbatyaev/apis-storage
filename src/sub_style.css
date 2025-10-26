@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f8;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* ====== Новые стили для фильтров ====== */
+.filters {
+    margin-bottom: 25px;
+}
+
+.filters input,
+.filters select {
+    padding: 8px 10px;
+    margin: 5px;
+    border-radius: 6px;
+    border: 1px solid #a22638;
+    font-size: 14px;
+}
+
+.filters input:focus,
+.filters select:focus {
+    border-color: #a22638;
+    outline: none;
+}
+
+/* ====== Сетка карточек ====== */
+#anime-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* ====== Карточка аниме (твои стили сохранены) ====== */
+.anime-card {
+    display: inline-block;
+    width: 180px;
+    margin: 10px;
+    text-align: center;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    padding: 10px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.anime-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.anime-card img {
+    width: 100%;
+    border-radius: 6px;
+}
+
+.anime-card h3 {
+    font-size: 16px;
+    margin: 8px 0 4px;
+    color: #333;
+}
+
+.anime-card p {
+    font-size: 14px;
+    color: #d73333;
+}
+
+/* Добавляем в конец sub_style.css */
+
+/* Спиннер загрузки */
+.spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Улучшаем внешний вид селекта */
+.filter-select {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    background: white;
+    min-width: 200px;
+    transition: all 0.3s ease;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+}
+
+/* Улучшаем отображение информации о источнике */
+.quote-content p {
+    margin: 0;
+    padding: 0.5rem 0;
+}
+
+/* Анимация появления */
+.quote-content {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.quote-card img {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
