@@ -14,8 +14,10 @@ async function loadPlaces(page = 1) {
     showLoading('Загрузка достопримечательностей...');
 
     try {
-        const response = await fetch(`http://api.geonames.org/searchJSON?country=JP&featureClass=P&maxRows=50&username=cerseieh&startRow=${(page - 1) * 50}`);
-        
+        // const response = await fetch(`https://api.geonames.org/searchJSON?country=JP&featureClass=P&maxRows=50&username=cerseieh&startRow=${(page - 1) * 50}`);
+        const response = await fetch(`https://secure.geonames.org/searchJSON?country=JP&featureClass=P&maxRows=50&username=cerseieh&startRow=${(page - 1) * 50}`);
+
+
         if (!response.ok) throw new Error(`Ошибка сети: ${response.status}`);
         
         const data = await response.json();
