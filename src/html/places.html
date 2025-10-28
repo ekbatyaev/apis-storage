@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Путешествие по Японии</title>
+    <link rel="stylesheet" href="../sub_style.css">
+</head>
+<body>
+    <header class="page-header">
+        <h1>✨ Путешествие по Японии ✨</h1>
+        <p>Откройте для себя удивительные места и достопримечательности Японии</p>
+        <div class="filters">
+            <input type="text" id="search" placeholder="Поиск мест...">
+            <select id="prefecture">
+                <option value="all">Все префектуры</option>
+                <option value="hokkaido">Хоккайдо</option>
+                <option value="tokyo">Токио</option>
+                <option value="kyoto">Киото</option>
+                <option value="osaka">Осака</option>
+                <option value="hyogo">Хёго</option>
+                <option value="fukuoka">Фукуока</option>
+                <option value="okinawa">Окинава</option>
+                <option value="other">Другие префектуры</option>
+            </select>
+            <button id="load-more">Показать</button>
+        </div>
+    </header>
+
+    <main>
+        <div id="places-list" class="places-grid">
+            <div class="spinner"></div>
+            <p>Загрузка достопримечательностей...</p>
+        </div>
+    </main>
+
+    <footer class="page-footer">
+        <p>© 2025. Аниме Вселенная. Все права защищены.</p>
+    </footer>
+
+    <script src="../js/places.js"></script>
+</body>
+</html>
