@@ -27,8 +27,12 @@ function showLoading(message = 'Загрузка аниме...') {
 }
 
 function showError(message) {
+    container.style.display = 'flex';
+    container.style.justifyContent = 'center';
+    container.style.alignItems = 'center';
+    container.style.minHeight = '50vh';
     container.innerHTML = `
-        <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+        <div style="text-align: center; padding: 2rem;">
             <div style="font-size: 3rem; margin-bottom: 1rem;">😔</div>
             <h3 style="margin-bottom: 1rem; color: var(--primary-color);">Ошибка</h3>
             <p style="margin-bottom: 1.5rem; opacity: 0.8;">${message}</p>
@@ -40,6 +44,8 @@ function showError(message) {
 async function loadAnime() {
     if (isLoading) return;
     isLoading = true;
+
+    showLoading('Загрузка аниме...');
 
     if (cache.data && cache.timestamp && (Date.now() - cache.timestamp) < cache.expiry) {
         allAnime = cache.data;
@@ -111,11 +117,13 @@ async function loadAnime() {
 function mapAnimeType(type) {
     const typeMap = {
         'TV': 'TV',
+        'MOVIE': 'Фильм',
+        'OVA': 'OVA',
+        'SPECIAL': 'Спешл'
     };
     return typeMap[type] || type || '-';
 }
 
-// Заглушка для изображений
 function getPlaceholderImage(title = 'Аниме') {
     const svg = `<svg width="200" height="280" xmlns="http://www.w3.org/2000/svg">
         <defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -173,7 +181,18 @@ let filterTimeout;
 function applyFilters() {
     clearTimeout(filterTimeout);
     filterTimeout = setTimeout(() => {
-        if (!allAnime.length) return;
+        if (!allAnime.length) {
+            container.style.display = 'flex';
+            container.style.justifyContent = 'center';
+            container.style.alignItems = 'center';
+            container.style.minHeight = '50vh';
+            container.innerHTML = `
+                <div style="text-align: center;">
+                    <p style="opacity: 0.8;">Нажмите "Показать" для загрузки данных</p>
+                </div>
+            `;
+            return;
+        }
 
         let filtered = allAnime.filter(anime => {
             const searchMatch = !searchInput.value.trim() || 
@@ -209,6 +228,7 @@ function applyFilters() {
 
 document.addEventListener('DOMContentLoaded', () => {
     const refreshBtn = document.createElement('button');
+    refreshBtn.id = 'load-anime';
     refreshBtn.innerHTML = 'Показать';
     refreshBtn.onclick = () => {
         cache.data = null;
@@ -221,7 +241,15 @@ document.addEventListener('DOMContentLoaded', () => {
     sortSelect.addEventListener('change', applyFilters);
     typeSelect.addEventListener('change', applyFilters);
 
-    loadAnime();
+    container.style.display = 'flex';
+    container.style.justifyContent = 'center';
+    container.style.alignItems = 'center';
+    container.style.minHeight = '50vh';
+    container.innerHTML = `
+        <div style="text-align: center;">
+            <p style="opacity: 0.8;">Нажмите "Показать" для загрузки аниме</p>
+        </div>
+    `;
 });
 
 const style = document.createElement('style');

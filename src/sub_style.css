@@ -147,6 +147,51 @@ button:active {
     transform: translateY(-1px);
 }
 
+#anime-list,
+#places-list,
+#quote-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.anime-image {
+    box-sizing: border-box;
+}
+
+.image-container {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.image-wrapper {
+    max-width: 100%;
+    max-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+.anime-image {
+    max-width: 100%;
+    max-height: 70vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.quote-card {
+    max-width: 90vw;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
 .anime-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -390,6 +435,22 @@ button:active {
 }
 
 @media (max-width: 768px) {
+    .image-wrapper {
+        max-height: 60vh;
+        max-width: 95vw;
+    }
+    
+    .anime-image {
+        max-height: 60vh;
+        max-width: 95vw;
+    }
+    
+    .quote-card {
+        margin: 0.5rem;
+        padding: 1rem;
+        max-width: 95vw;
+    }
+
     .anime-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 1rem;
@@ -416,9 +477,6 @@ button:active {
     
     #quote-container {
         padding: 0.5rem;
-    }
-    .quote-card {
-        padding: 1rem;
     }
 
     .places-grid {

@@ -64,39 +64,55 @@ function getPrefectureFromAdmin(adminCode) {
 }
 
 function showLoading(message) {
+    container.style.display = 'flex';
+    container.style.justifyContent = 'center';
+    container.style.alignItems = 'center';
+    container.style.minHeight = '400px';
+    container.style.width = '100%';
     container.innerHTML = `
-        <div class="loading-container" style="display: flex; justify-content: center; align-items: center; min-height: 400px; width: 100%;">
-            <div style="text-align: center;">
-                <div class="spinner"></div>
-                <p style="margin-top: 1rem; opacity: 0.8;">${message}</p>
-            </div>
+        <div style="text-align: center;">
+            <div class="spinner"></div>
+            <p style="margin-top: 1rem; opacity: 0.8;">${message}</p>
         </div>
     `;
 }
 
 function showError(message) {
+    container.style.display = 'flex';
+    container.style.justifyContent = 'center';
+    container.style.alignItems = 'center';
+    container.style.minHeight = '400px';
     container.innerHTML = `
-        <div class="error-container">
+        <div style="text-align: center; padding: 2rem;">
             <div style="font-size: 3rem; margin-bottom: 1rem;">😔</div>
-            <h3>Ошибка</h3>
-            <p>${message}</p>
-            <button onclick="loadPlaces(1)" class="retry-button">Попробовать снова</button>
+            <h3 style="margin-bottom: 1rem; color: var(--primary-color);">Ошибка</h3>
+            <p style="margin-bottom: 1.5rem; opacity: 0.8;">${message}</p>
+            <button onclick="loadPlaces(1)" class="retry-button">🔄 Попробовать снова</button>
         </div>
     `;
 }
 
 function renderPlaces(places) {
     if (!places.length) {
+        container.style.display = 'flex';
+        container.style.justifyContent = 'center';
+        container.style.alignItems = 'center';
+        container.style.minHeight = '400px';
         container.innerHTML = `
-            <div class="empty-container">
+            <div style="text-align: center;">
                 <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
-                <h3>Места не найдены</h3>
-                <p>Попробуйте изменить параметры поиска</p>
+                <h3 style="margin-bottom: 1rem;">Места не найдены</h3>
+                <p style="opacity: 0.8;">Попробуйте изменить параметры поиска</p>
             </div>
         `;
         return;
     }
 
+    container.style.display = 'flex';
+    container.style.flexDirection = 'column';
+    container.style.gap = '1rem';
+    container.style.minHeight = '';
+    
     container.innerHTML = places.map(place => `
         <div class="place-item">
             <div class="place-header">
@@ -128,23 +144,22 @@ function getPrefectureLabel(prefecture) {
     return labels[prefecture] || '🇯🇵 Япония';
 }
 
-searchInput.addEventListener('input', (e) => {
-    const searchTerm = e.target.value.toLowerCase();
-    const filtered = allPlaces.filter(place => 
-        place.name.toLowerCase().includes(searchTerm) ||
-        place.description.toLowerCase().includes(searchTerm) ||
-        place.address.toLowerCase().includes(searchTerm)
-    );
-    renderPlaces(filtered);
-});
-
-prefectureSelect.addEventListener('change', () => {
-    applyFilters();
-});
-
 function applyFilters() {
     const searchTerm = searchInput.value.toLowerCase();
     const prefectureValue = prefectureSelect.value;
+
+    if (!allPlaces.length) {
+        container.style.display = 'flex';
+        container.style.justifyContent = 'center';
+        container.style.alignItems = 'center';
+        container.style.minHeight = '400px';
+        container.innerHTML = `
+            <div style="text-align: center;">
+                <p style="opacity: 0.8;">Нажмите "Показать" для загрузки мест</p>
+            </div>
+        `;
+        return;
+    }
 
     const filtered = allPlaces.filter(place => {
         const searchMatch = !searchTerm || 
@@ -158,10 +173,28 @@ function applyFilters() {
     renderPlaces(filtered);
 }
 
+searchInput.addEventListener('input', applyFilters);
+prefectureSelect.addEventListener('change', applyFilters);
+
 loadMoreBtn.addEventListener('click', () => {
     loadPlaces(currentPage + 1);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadPlaces(1);
+    // Изменяем текст кнопки и её назначение
+    loadMoreBtn.textContent = 'Показать';
+    loadMoreBtn.onclick = () => {
+        loadPlaces(1);
+    };
+    
+    // Показываем начальное состояние вместо автоматической загрузки
+    container.style.display = 'flex';
+    container.style.justifyContent = 'center';
+    container.style.alignItems = 'center';
+    container.style.minHeight = '400px';
+    container.innerHTML = `
+        <div style="text-align: center;">
+            <p style="opacity: 0.8;">Нажмите "Показать" для загрузки достопримечательностей</p>
+        </div>
+    `;
 });
