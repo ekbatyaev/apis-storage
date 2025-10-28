@@ -1,4 +1,3 @@
-/* ==== Современный аниме стиль ==== */
 :root {
     --primary-color: #ff6b9d;
     --secondary-color: #6a5af9;
@@ -47,7 +46,6 @@ body::before {
     50% { transform: scale(1.1) rotate(1deg); }
 }
 
-/* ==== Заголовок ==== */
 .page-header {
     padding: 3rem 1rem 2rem;
     text-align: center;
@@ -87,7 +85,6 @@ body::before {
     margin-bottom: 1rem;
 }
 
-/* ==== Основные ссылки ==== */
 .index-links {
     display: flex;
     flex-direction: column;

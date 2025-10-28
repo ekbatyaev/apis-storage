@@ -164,7 +164,6 @@ function renderAnime(list) {
         </div>
     `).join('');
 
-    // Анимация появления
     setTimeout(() => {
         document.querySelectorAll('.anime-card').forEach(card => card.classList.add('fade-in'));
     }, 100);
@@ -210,7 +209,7 @@ function applyFilters() {
 
 document.addEventListener('DOMContentLoaded', () => {
     const refreshBtn = document.createElement('button');
-    refreshBtn.innerHTML = 'Обновить';
+    refreshBtn.innerHTML = 'Показать';
     refreshBtn.onclick = () => {
         cache.data = null;
         cache.timestamp = null;

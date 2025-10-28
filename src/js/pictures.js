@@ -19,9 +19,6 @@ async function loadQuote() {
                     <img src="${data.results[0].url}" alt="Аниме изображение" 
                          onerror="this.style.display='none'">
                     <div style="text-align: center; margin-top: 1rem;">
-                        <p style="color: var(--accent-color)">
-                            Источник данных: API Nekos.best
-                        </p>
                     </div>
                 </div>
             `;
