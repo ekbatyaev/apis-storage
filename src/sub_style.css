@@ -434,6 +434,108 @@ button:active {
     color: #7c8ab0;
 }
 
+@media (max-width: 1024px) {
+    body {
+        padding: 0.8rem;
+        padding-bottom: 80px;
+    }
+
+    .page-header {
+        padding: 1.5rem 0.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .page-header h1 {
+        font-size: 2.4rem;
+    }
+
+    .page-header p {
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .filters {
+        max-width: 700px;
+        padding: 1.2rem;
+        margin: 1.5rem auto;
+        gap: 0.8rem;
+    }
+
+    .filters input,
+    .filters select {
+        min-width: 180px;
+        padding: 0.7rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    button {
+        padding: 0.9rem 1.8rem;
+        font-size: 1rem;
+    }
+
+    .anime-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1.2rem;
+        margin-top: -3rem;
+    }
+
+    .anime-poster {
+        height: 250px;
+    }
+
+    .anime-title {
+        font-size: 0.95rem;
+    }
+
+    .places-grid {
+        max-width: 700px;
+        margin-top: -4rem;
+        padding: 0.8rem;
+    }
+
+    .place-item {
+        padding: 1.3rem;
+    }
+
+    .place-name {
+        font-size: 1.2rem;
+    }
+
+    .place-description {
+        font-size: 0.92rem;
+    }
+
+    .image-wrapper {
+        max-height: 65vh;
+        max-width: 90vw;
+    }
+
+    .anime-image {
+        max-height: 65vh;
+        max-width: 90vw;
+    }
+
+    .quote-card {
+        max-width: 85vw;
+        margin-top: -3rem;
+    }
+
+    .quote-card img {
+        max-width: 85vw;
+        max-height: 65vh;
+    }
+
+    #quote-container {
+        max-width: 450px;
+        margin: 0.8rem auto;
+    }
+
+    .page-footer {
+        padding: 1.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
+}
+
 @media (max-width: 768px) {
     .image-wrapper {
         max-height: 60vh;
