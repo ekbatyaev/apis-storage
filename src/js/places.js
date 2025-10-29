@@ -1,11 +1,36 @@
-const container = document.getElementById('places-list');
-const searchInput = document.getElementById('search');
-const prefectureSelect = document.getElementById('prefecture');
-const loadMoreBtn = document.getElementById('load-more');
-
+let container, searchInput, prefectureSelect, loadMoreBtn;
 let currentPage = 1;
 let allPlaces = [];
 let isLoading = false;
+
+function init() {
+    container = document.getElementById('places-list');
+    searchInput = document.getElementById('search');
+    prefectureSelect = document.getElementById('prefecture');
+    loadMoreBtn = document.getElementById('load-more');
+
+    if (!container || !searchInput || !prefectureSelect || !loadMoreBtn) {
+        console.error('Не все элементы найдены на странице');
+        return;
+    }
+
+    searchInput.addEventListener('input', applyFilters);
+    prefectureSelect.addEventListener('change', applyFilters);
+    
+    loadMoreBtn.addEventListener('click', () => {
+        loadPlaces(1);
+    });
+
+    container.style.display = 'flex';
+    container.style.justifyContent = 'center';
+    container.style.alignItems = 'center';
+    container.style.minHeight = '400px';
+    container.innerHTML = `
+        <div style="text-align: center;">
+            <p style="opacity: 0.8;">Нажмите "Показать" для загрузки достопримечательностей</p>
+        </div>
+    `;
+}
 
 async function loadPlaces(page = 1) {
     if (isLoading) return;
@@ -14,9 +39,7 @@ async function loadPlaces(page = 1) {
     showLoading('Загрузка достопримечательностей...');
 
     try {
-        // const response = await fetch(`https://api.geonames.org/searchJSON?country=JP&featureClass=P&maxRows=50&username=cerseieh&startRow=${(page - 1) * 50}`);
         const response = await fetch(`https://secure.geonames.org/searchJSON?country=JP&featureClass=P&maxRows=50&username=cerseieh&startRow=${(page - 1) * 50}`);
-
 
         if (!response.ok) throw new Error(`Ошибка сети: ${response.status}`);
         
@@ -175,26 +198,7 @@ function applyFilters() {
     renderPlaces(filtered);
 }
 
-searchInput.addEventListener('input', applyFilters);
-prefectureSelect.addEventListener('change', applyFilters);
+document.addEventListener('DOMContentLoaded', init);
 
-loadMoreBtn.addEventListener('click', () => {
-    loadPlaces(currentPage + 1);
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    loadMoreBtn.textContent = 'Показать';
-    loadMoreBtn.onclick = () => {
-        loadPlaces(1);
-    };
-    
-    container.style.display = 'flex';
-    container.style.justifyContent = 'center';
-    container.style.alignItems = 'center';
-    container.style.minHeight = '400px';
-    container.innerHTML = `
-        <div style="text-align: center;">
-            <p style="opacity: 0.8;">Нажмите "Показать" для загрузки достопримечательностей</p>
-        </div>
-    `;
-});
+window.loadPlaces = loadPlaces;
+window.applyFilters = applyFilters;
