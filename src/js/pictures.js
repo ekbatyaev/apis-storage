@@ -73,7 +73,6 @@ function handleImageError(img) {
 window.loadQuote = loadQuote;
 window.handleImageError = handleImageError;
 
-// Показываем начальное состояние
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('quote-container');
     container.style.display = 'flex';

@@ -183,13 +183,11 @@ loadMoreBtn.addEventListener('click', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Изменяем текст кнопки и её назначение
     loadMoreBtn.textContent = 'Показать';
     loadMoreBtn.onclick = () => {
         loadPlaces(1);
     };
     
-    // Показываем начальное состояние вместо автоматической загрузки
     container.style.display = 'flex';
     container.style.justifyContent = 'center';
     container.style.alignItems = 'center';
