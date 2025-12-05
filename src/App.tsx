@@ -1,35 +1,17 @@
-import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
-
-// Компонент для определения текущей страницы
-const PageHandler = () => {
-  const location = useLocation();
-  
-  useEffect(() => {
-    // Определяем, какая страница должна отображаться
-    const path = location.pathname;
-    
-    if (path.includes('places')) {
-      // Загружаем содержимое places.html
-      console.log('Loading places page');
-    }
-    // и т.д.
-  }, [location]);
-  
-  return null;
-};
 
 function App() {
   return (
-    <Router basename="/apis-storage">
-      <PageHandler />
+    <Router>
       <Routes>
-        <Route path="/*" element={<Home />} />
-        {/* Все остальные пути также ведут на Home */}
+        <Route path="/" element={<Home />} />
         <Route path="/places" element={<Home />} />
         <Route path="/stories" element={<Home />} />
-        {/* и т.д. */}
+        <Route path="/characters" element={<Home />} />
+        <Route path="/top" element={<Home />} />
+        <Route path="/top/:id" element={<Home />} />
+        <Route path="/*" element={<Home />} />
       </Routes>
     </Router>
   );
