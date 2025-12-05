@@ -3,22 +3,23 @@ import react from '@vitejs/plugin-react';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 export default defineConfig({
-  base: '/apis-storage/',
-  plugins: [
-    react(),
-    viteStaticCopy({
-      targets: [
-        {
-          src: 'src/**/*',
-          dest: ''
-        }
-      ]
-    })
-  ],
-  css: {
-    postcss: './postcss.config.js',
-  },
-  build: {
-    outDir: 'dist'
-  }
+    base: '/apis-storage/',
+    plugins: [
+        react(),
+        viteStaticCopy({
+            targets: [
+                {
+                    // просто используем относительный путь
+                    src: 'src/**/*',
+                    dest: 'src'
+                }
+            ]
+        })
+    ],
+    css: {
+        postcss: './postcss.config.js',
+    },
+    build: {
+        outDir: 'dist'
+    }
 });
