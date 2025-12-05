@@ -1,0 +1,59 @@
+// Переменные
+$primary-color: #ff6b9d;
+$secondary-color: #6a5af9;
+$accent-color: #00d4ff;
+$dark-color: #1a1a2e;
+$darker-color: #16213e;
+$text-color: #ffffff;
+$card-bg: rgba(255, 255, 255, 0.1);
+$glow-color: rgba(255, 107, 157, 0.4);
+
+// Глобальные стили
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, $dark-color 0%, $darker-color 50%, #0f3460 100%);
+  min-height: 100vh;
+  color: $text-color;
+  overflow-x: hidden;
+  position: relative;
+  padding-bottom: 100px;
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba($primary-color, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba($secondary-color, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba($accent-color, 0.05) 0%, transparent 50%);
+    z-index: -1;
+    animation: backgroundShift 8s ease-in-out infinite;
+  }
+}
+
+// Анимации
+@keyframes backgroundShift {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(1deg); }
+}
+
+@keyframes titleGlow {
+  from { text-shadow: 0 0 20px $glow-color; }
+  to { text-shadow: 0 0 40px $glow-color, 0 0 60px rgba($primary-color, 0.3); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  50% { transform: translateY(-100px) translateX(100px); }
+  90% { opacity: 1; }
+}
