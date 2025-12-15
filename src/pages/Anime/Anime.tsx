@@ -19,6 +19,7 @@ export default function Anime() {
     const [search, setSearch] = useState('');
     const [sort, setSort] = useState('score');
     const [type, setType] = useState('all');
+    const [filtersActive, setFiltersActive] = useState(false);
 
     // Загрузка данных
     const loadAnime = async () => {
@@ -98,6 +99,10 @@ export default function Anime() {
         }
 
         setFilteredList(list);
+        
+        // Проверяем, активны ли фильтры
+        const hasActiveFilters = search.trim() !== '' || type !== 'all' || sort !== 'score';
+        setFiltersActive(hasActiveFilters);
     }, [search, sort, type, animeList]);
 
     const mapType = (format: string) => {
@@ -108,6 +113,13 @@ export default function Anime() {
             SPECIAL: 'Спешл',
         };
         return map[format] || format || '-';
+    };
+
+    // Функция для сброса фильтров
+    const resetFilters = () => {
+        setSearch('');
+        setType('all');
+        setSort('score');
     };
 
     const getPlaceholderImage = (title = 'Аниме') => {
@@ -132,23 +144,38 @@ export default function Anime() {
                 <div className={styles.filters}>
                     <input
                         type="text"
-                        placeholder="Поиск по названию..."
+                        placeholder="🔍 Поиск по названию..."
                         value={search}
                         onChange={e => setSearch(e.target.value)}
                     />
+                    
                     <select value={sort} onChange={e => setSort(e.target.value)}>
-                        <option value="title">Сортировать по названию</option>
-                        <option value="score">Сортировать по рейтингу</option>
-                        <option value="year">Сортировать по году</option>
+                        <option value="title">📝 По названию</option>
+                        <option value="score">⭐ По рейтингу</option>
+                        <option value="year">📅 По году</option>
                     </select>
+                    
                     <select value={type} onChange={e => setType(e.target.value)}>
-                        <option value="all">Все типы</option>
-                        <option value="tv">TV</option>
-                        <option value="movie">Фильм</option>
-                        <option value="ova">OVA</option>
-                        <option value="special">Спешл</option>
+                        <option value="all">🎬 Все типы</option>
+                        <option value="TV">📺 TV</option>
+                        <option value="Фильм">🎞️ Фильм</option>
+                        <option value="OVA">💿 OVA</option>
+                        <option value="Спешл">🌟 Спешл</option>
                     </select>
-                    <button className={styles.showButton} onClick={loadAnime}>Показать</button>
+                    
+                    <button className={styles.showButton} onClick={loadAnime}>
+                        🎭 Показать аниме
+                    </button>
+                    
+                    {filtersActive && (
+                        <button 
+                            className={styles.resetButton} 
+                            onClick={resetFilters}
+                            title="Сбросить все фильтры"
+                        >
+                            🔄 Сбросить фильтры
+                        </button>
+                    )}
                 </div>
             </header>
 
@@ -159,13 +186,17 @@ export default function Anime() {
                         <p>Загрузка аниме...</p>
                     </div>
                 )}
+                
                 {error && (
                     <div className={styles.errorContainer}>
                         <div className={styles.errorIcon}>😔</div>
                         <p>{error}</p>
-                        <button className={styles.retryButton} onClick={loadAnime}>🔄 Попробовать снова</button>
+                        <button className={styles.retryButton} onClick={loadAnime}>
+                            🔄 Попробовать снова
+                        </button>
                     </div>
                 )}
+                
                 {!loading && !error && filteredList.map((anime, index) => (
                     <div
                         key={anime.id}
@@ -180,8 +211,14 @@ export default function Anime() {
                         />
                         <div className={styles.animeInfo}>
                             <h3 className={styles.animeTitle} title={anime.title}>{anime.title}</h3>
-                            <p className={styles.animeMeta}>⭐ {anime.score} | {anime.type} | {anime.year}</p>
-                            {anime.episodes && <p className={styles.animeEpisodes}>📺 Эпизодов: {anime.episodes}</p>}
+                            <p className={styles.animeMeta}>
+                                ⭐ {anime.score} | {anime.type} | {anime.year}
+                            </p>
+                            {anime.episodes && (
+                                <p className={styles.animeEpisodes}>
+                                    📺 Эпизодов: {anime.episodes}
+                                </p>
+                            )}
                         </div>
                     </div>
                 ))}

@@ -1,3 +1,22 @@
+:root {
+  --primary-color: #ff6b9d;
+  --secondary-color: #6a5af9;
+  --accent-color: #00d4ff;
+  --dark-color: #1a1a2e;
+  --darker-color: #16213e;
+  --text-color: #ffffff;
+  --card-bg: rgba(255, 255, 255, 0.1);
+  --glow-color: rgba(255, 107, 157, 0.4);
+  
+  // Новые цвета для кнопок
+  --button-purple: #8a2be2;
+  --button-pink: #ff1493;
+  --button-blue: #1e90ff;
+  --button-teal: #00ced1;
+  --button-orange: #ff8c00;
+  --button-gold: #ffd700;
+}
+
 .container {
   padding: 1rem;
 }
@@ -5,40 +24,216 @@
 .pageHeader {
   text-align: center;
   margin-bottom: 2rem;
+  position: relative;
+  padding: 2rem 1rem;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px var(--glow-color);
+    animation: titleGlow 2s ease-in-out infinite alternate;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+  }
+}
+
+@keyframes titleGlow {
+  from { text-shadow: 0 0 20px var(--glow-color); }
+  to { text-shadow: 0 0 40px var(--glow-color), 0 0 60px rgba(255, 107, 157, 0.3); }
 }
 
 .filters {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 1rem;
   flex-wrap: wrap;
-  margin-top: 1rem;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  
+  input, select {
+    padding: 0.8rem 1.2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: var(--text-color);
+    font-size: 1rem;
+    min-width: 180px;
+    transition: all 0.3s ease;
+    
+    &:focus {
+      outline: none;
+      border-color: var(--button-purple);
+      box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+    }
+    
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+  
+  select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%238a2be2' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px;
+    padding-right: 2.5rem;
+  }
 }
 
-.showButton, .retryButton {
-  padding: 0.5rem 1rem;
-  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-  border: none;
-  border-radius: 8px;
+// Базовые стили для всех кнопок
+.showButton, .retryButton, .resetButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  text-decoration: none;
   color: white;
-  cursor: pointer;
+  font-size: 1.1rem;
   font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  min-width: 140px;
+  border: none;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+  }
+  
+  &:hover::before {
+    left: 100%;
+  }
+  
+  &:hover {
+    transform: translateY(-5px) scale(1.05);
+  }
+  
+  &:active {
+    transform: translateY(-2px) scale(1.02);
+  }
+}
+
+// Фиолетово-розовая кнопка (Показать аниме)
+.showButton {
+  background: linear-gradient(45deg, var(--button-purple), var(--button-pink));
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+  
+  &:hover {
+    background: linear-gradient(45deg, #9932cc, #ff69b4);
+    box-shadow: 
+      0 10px 30px rgba(138, 43, 226, 0.4),
+      0 0 0 2px rgba(255, 20, 147, 0.5);
+  }
+  
+  &:active {
+    background: linear-gradient(45deg, #7b1fa2, #db7093);
+  }
+}
+
+// Кнопка сброса (сине-голубая)
+.resetButton {
+  background: linear-gradient(45deg, var(--button-blue), var(--button-teal));
+  border: 1px solid rgba(30, 144, 255, 0.3);
+  color: white;
+  font-weight: 600;
+  padding: 0.8rem 1.5rem;
+  min-width: 120px;
+  
+  &:hover {
+    background: linear-gradient(45deg, #4169e1, #20b2aa);
+    box-shadow: 
+      0 10px 30px rgba(30, 144, 255, 0.4),
+      0 0 0 2px rgba(0, 206, 209, 0.5);
+  }
+  
+  &:active {
+    background: linear-gradient(45deg, #0000cd, #008b8b);
+  }
+}
+
+// Кнопка повторной загрузки (оранжево-желтая)
+.retryButton {
+  background: linear-gradient(45deg, var(--button-orange), var(--button-gold));
+  border: 1px solid rgba(255, 140, 0, 0.3);
+  
+  &:hover {
+    background: linear-gradient(45deg, #ffa500, #ffed4e);
+    box-shadow: 
+      0 10px 30px rgba(255, 165, 0, 0.4),
+      0 0 0 2px rgba(255, 215, 0, 0.5);
+  }
+  
+  &:active {
+    background: linear-gradient(45deg, #ff7f00, #ffc400);
+  }
 }
 
 .animeGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 1rem;
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .animeCard {
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.5s ease;
-  border-radius: 8px;
+  border-radius: 15px;
   overflow: hidden;
-  background-color: #1a1a2e;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 
+      0 15px 30px rgba(138, 43, 226, 0.2),
+      0 0 0 1px rgba(255, 20, 147, 0.3);
+  }
 }
 
 .fadeIn {
@@ -54,23 +249,26 @@
 }
 
 .animeInfo {
-  padding: 0.5rem;
+  padding: 1rem;
 }
 
 .animeTitle {
   font-size: 1rem;
   margin: 0.25rem 0;
+  color: #fff;
 }
 
 .animeMeta {
   font-size: 0.85rem;
   opacity: 0.8;
+  color: #ccc;
 }
 
 .animeEpisodes {
   font-size: 0.8rem;
   opacity: 0.7;
   margin-top: 0.3rem;
+  color: #aaa;
 }
 
 .spinnerContainer {
@@ -79,15 +277,15 @@
   align-items: center;
   justify-content: center;
   min-height: 50vh;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .spinner {
-  border: 3px solid rgba(255,255,255,0.1);
-  border-top: 3px solid var(--primary-color);
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid var(--button-purple);
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   animation: spin 1s linear infinite;
 }
 
@@ -103,15 +301,52 @@
   justify-content: center;
   min-height: 50vh;
   text-align: center;
+  gap: 1.5rem;
+  padding: 2rem;
 }
 
 .errorIcon {
-  font-size: 3rem;
+  font-size: 4rem;
   margin-bottom: 1rem;
+  animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-20px); }
 }
 
 .pageFooter {
   text-align: center;
-  margin-top: 2rem;
-  color: #aaa;
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  opacity: 0.7;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .pageHeader {
+    h1 {
+      font-size: 2rem;
+    }
+    
+    p {
+      font-size: 1rem;
+    }
+  }
+  
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+    
+    input, select, button {
+      width: 100%;
+      min-width: unset;
+    }
+  }
+  
+  .animeGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
 }
