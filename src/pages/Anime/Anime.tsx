@@ -21,7 +21,6 @@ export default function Anime() {
     const [type, setType] = useState('all');
     const [filtersActive, setFiltersActive] = useState(false);
 
-    // Загрузка данных
     const loadAnime = async () => {
         setLoading(true);
         setError('');
@@ -74,7 +73,6 @@ export default function Anime() {
         // По умолчанию не загружаем сразу, ждем нажатия кнопки "Показать"
     }, []);
 
-    // Фильтры и сортировка
     useEffect(() => {
         let list = [...animeList];
 
@@ -100,7 +98,6 @@ export default function Anime() {
 
         setFilteredList(list);
         
-        // Проверяем, активны ли фильтры
         const hasActiveFilters = search.trim() !== '' || type !== 'all' || sort !== 'score';
         setFiltersActive(hasActiveFilters);
     }, [search, sort, type, animeList]);
@@ -115,7 +112,6 @@ export default function Anime() {
         return map[format] || format || '-';
     };
 
-    // Функция для сброса фильтров
     const resetFilters = () => {
         setSearch('');
         setType('all');
@@ -179,14 +175,17 @@ export default function Anime() {
                 </div>
             </header>
 
-            <main id="anime-list" className={styles.animeGrid}>
+            {/* Основной контент между header и footer */}
+            <div className={styles.mainContent}>
+                {/* Спиннер загрузки - по центру основной области */}
                 {loading && (
                     <div className={styles.spinnerContainer}>
                         <div className={styles.spinner}></div>
-                        <p>Загрузка аниме...</p>
+                        <p className={styles.spinnerText}>Загрузка аниме...</p>
                     </div>
                 )}
-                
+
+                {/* Сообщение об ошибке */}
                 {error && (
                     <div className={styles.errorContainer}>
                         <div className={styles.errorIcon}>😔</div>
@@ -196,34 +195,42 @@ export default function Anime() {
                         </button>
                     </div>
                 )}
-                
-                {!loading && !error && filteredList.map((anime, index) => (
-                    <div
-                        key={anime.id}
-                        className={`${styles.animeCard} ${styles.fadeIn}`}
-                        style={{ animationDelay: `${index * 0.03}s` }}
-                    >
-                        <img
-                            src={anime.image || getPlaceholderImage(anime.title)}
-                            alt={anime.title}
-                            className={styles.animePoster}
-                            onError={(e) => (e.currentTarget.src = getPlaceholderImage(anime.title))}
-                        />
-                        <div className={styles.animeInfo}>
-                            <h3 className={styles.animeTitle} title={anime.title}>{anime.title}</h3>
-                            <p className={styles.animeMeta}>
-                                ⭐ {anime.score} | {anime.type} | {anime.year}
-                            </p>
-                            {anime.episodes && (
-                                <p className={styles.animeEpisodes}>
-                                    📺 Эпизодов: {anime.episodes}
-                                </p>
-                            )}
-                        </div>
-                    </div>
-                ))}
-            </main>
 
+                {/* Сетка аниме (когда не загрузка и нет ошибки) */}
+                {!loading && !error && (
+                    <div className={styles.animeGrid}>
+                        {filteredList.map((anime, index) => (
+                            <div
+                                key={anime.id}
+                                className={`${styles.animeCard} ${styles.fadeIn}`}
+                                style={{ animationDelay: `${index * 0.03}s` }}
+                            >
+                                <img
+                                    src={anime.image || getPlaceholderImage(anime.title)}
+                                    alt={anime.title}
+                                    className={styles.animePoster}
+                                    onError={(e) => (e.currentTarget.src = getPlaceholderImage(anime.title))}
+                                />
+                                <div className={styles.animeInfo}>
+                                    <h3 className={styles.animeTitle} title={anime.title}>
+                                        {anime.title}
+                                    </h3>
+                                    <p className={styles.animeMeta}>
+                                        ⭐ {anime.score} | {anime.type} | {anime.year}
+                                    </p>
+                                    {anime.episodes && (
+                                        <p className={styles.animeEpisodes}>
+                                            📺 Эпизодов: {anime.episodes}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+
+            {/* Футер ВСЕГДА внизу страницы */}
             <footer className={styles.pageFooter}>
                 <p>© 2025. Аниме Вселенная. Все права защищены.</p>
             </footer>

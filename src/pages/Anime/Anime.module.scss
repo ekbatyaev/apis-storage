@@ -19,6 +19,9 @@
 
 .container {
   padding: 1rem;
+  min-height: 100vh;  // Важно: минимальная высота = высота экрана
+  display: flex;
+  flex-direction: column;
 }
 
 .pageHeader {
@@ -109,7 +112,7 @@
   }
 }
 
-// Базовые стили для всех кнопок
+// Кнопки
 .showButton, .retryButton, .resetButton {
   display: flex;
   align-items: center;
@@ -153,7 +156,6 @@
   }
 }
 
-// Фиолетово-розовая кнопка (Показать аниме)
 .showButton {
   background: linear-gradient(45deg, var(--button-purple), var(--button-pink));
   border: 1px solid rgba(138, 43, 226, 0.3);
@@ -165,13 +167,8 @@
       0 10px 30px rgba(138, 43, 226, 0.4),
       0 0 0 2px rgba(255, 20, 147, 0.5);
   }
-  
-  &:active {
-    background: linear-gradient(45deg, #7b1fa2, #db7093);
-  }
 }
 
-// Кнопка сброса (сине-голубая)
 .resetButton {
   background: linear-gradient(45deg, var(--button-blue), var(--button-teal));
   border: 1px solid rgba(30, 144, 255, 0.3);
@@ -186,13 +183,8 @@
       0 10px 30px rgba(30, 144, 255, 0.4),
       0 0 0 2px rgba(0, 206, 209, 0.5);
   }
-  
-  &:active {
-    background: linear-gradient(45deg, #0000cd, #008b8b);
-  }
 }
 
-// Кнопка повторной загрузки (оранжево-желтая)
 .retryButton {
   background: linear-gradient(45deg, var(--button-orange), var(--button-gold));
   border: 1px solid rgba(255, 140, 0, 0.3);
@@ -203,10 +195,67 @@
       0 10px 30px rgba(255, 165, 0, 0.4),
       0 0 0 2px rgba(255, 215, 0, 0.5);
   }
-  
-  &:active {
-    background: linear-gradient(45deg, #ff7f00, #ffc400);
-  }
+}
+
+// Основной контент - занимает всё свободное место
+.mainContent {
+  flex: 1;  // Это ключевое - растягивается между header и footer
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+// Спиннер внутри основного контента
+.spinnerContainer {
+  flex: 1;  // Занимает всё доступное пространство в mainContent
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;  // Минимальная высота
+}
+
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid var(--button-purple);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+.spinnerText {
+  color: white;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.errorContainer {
+  flex: 1;  // Аналогично спиннеру
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  min-height: 300px;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-20px); }
 }
 
 .animeGrid {
@@ -271,55 +320,11 @@
   color: #aaa;
 }
 
-.spinnerContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 50vh;
-  gap: 1rem;
-}
-
-.spinner {
-  border: 3px solid rgba(255, 255, 255, 0.1);
-  border-top: 3px solid var(--button-purple);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.errorContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 50vh;
-  text-align: center;
-  gap: 1.5rem;
-  padding: 2rem;
-}
-
-.errorIcon {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-  animation: bounce 1s infinite alternate;
-}
-
-@keyframes bounce {
-  from { transform: translateY(0); }
-  to { transform: translateY(-20px); }
-}
-
+// Футер всегда внизу
 .pageFooter {
   text-align: center;
-  margin-top: 3rem;
   padding: 2rem 1rem;
+  margin-top: auto;  // Ключевое - прижимает к низу
   opacity: 0.7;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
