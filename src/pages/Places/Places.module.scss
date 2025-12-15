@@ -1,0 +1,95 @@
+.pageHeader {
+  text-align: center;
+  padding: 24px;
+}
+
+.filters {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.loadButton {
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #4b6cb7, #182848);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.loadButton:hover {
+  background: linear-gradient(45deg, #182848, #4b6cb7);
+  transform: scale(1.05);
+}
+
+.placesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  padding: 24px;
+}
+
+.placeCard {
+  background: #31438d;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.placeCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.placeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prefectureBadge {
+  background: #182848;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+}
+
+.placeMeta {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.spinnerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-height: 200px;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 4px solid rgba(0,0,0,0.1);
+  border-top-color: #182848;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.pageFooter {
+  text-align: center;
+  padding: 16px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

@@ -1,20 +1,19 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
+import Anime from './pages/Anime/Anime';
+import Pictures from './pages/Pictures/Pictures';
+import Places from './pages/Places/Places';
 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/places" element={<Home />} />
-        <Route path="/stories" element={<Home />} />
-        <Route path="/characters" element={<Home />} />
-        <Route path="/top" element={<Home />} />
-        <Route path="/top/:id" element={<Home />} />
-        <Route path="/*" element={<Home />} />
-      </Routes>
-    </Router>
-  );
+
+export default function App() {
+    return (
+        <HashRouter>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/Anime" element={<Anime />} />
+                <Route path="/Pictures" element={<Pictures />} />
+                <Route path="/Places" element={<Places />} />
+            </Routes>
+        </HashRouter>
+    );
 }
-
-export default App;
